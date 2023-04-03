@@ -1,0 +1,22 @@
+<h1>Find Feelings</h1>
+
+<ul>
+  <% @asks.each do |ask| %>
+    <li>
+      <%= link_to ask.title, ask %>
+    </li>
+  <% end %>
+</ul>
+
+<%#= link_to "New Ask", new_ask_path %>
+
+
+<%= form_tag create_path, method: :post do %>
+  <%= label_tag :title, "Ask ChatGPT a question:" %>
+  <%= text_field_tag :title %>
+  <%= submit_tag "Ask" %>
+<% end %>
+
+<% if @answer.present? %>
+  <p><%= @answer %></p>
+<% end %>
