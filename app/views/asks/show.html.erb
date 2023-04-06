@@ -1,0 +1,10 @@
+<h1><%= @ask.title %></h1>
+<p><%= @ask.body %></p>
+
+<ul>
+  <li><%= link_to "Destroy", ask_path(@ask), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+  } %></li>
+</ul>
+<%= link_to "index", root_path %>

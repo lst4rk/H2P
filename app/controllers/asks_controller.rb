@@ -13,29 +13,22 @@ class AsksController < ApplicationController
   end
 
   def create
-    api_key = Rails.application.credentials.chatgpt_api_key
+    @answer = ChatCallerSvc.call(params[:title])
+    @ask = Ask.new(title: ask_params[:title], body: "\"#{@answer}")
 
-    response = HTTParty.post("https://api.openai.com/v1/chat/completions", {
-      headers: {
-        "Content-Type" => "application/json",
-        "Authorization" => "Bearer #{api_key}"
-      },
-      body: {
-        model: 'gpt-3.5-turbo',
-        # prompt: params[:title],
-        messages: [{ role: 'user', content: params[:title] }],
-        max_tokens: 100,
-        n: 1,
-        stop: "\n"
-      }.to_json
-    })
+    if @ask.save
+      redirect_to root_path(answer: @ask.body)
+    else
+      render :new, status: :unprocessable_entity
+    end
 
-    @answer = response.parsed_response['choices'][0]["message"]["content"]
+  end
 
-    logger.info "this is the answer"
-    logger.info @answer
-    redirect_to root_path(answer: @answer)
+  def destroy
+    @ask = Ask.find(params[:id])
+    @ask.destroy
 
+    redirect_to root_path, status: :see_other
   end
 
   private

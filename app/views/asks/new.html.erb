@@ -1,8 +1,8 @@
 <h1>New Ask</h1>
 
-<%= form_with model: @ask do |form| %>
+<%= form_with model: @ask, url: asks_path, method: :post do |form| %>
   <div>
-    <%= form.label :title %><br>
+    <%= form.label :title, "What's on your mind?" %><br>
     <%= form.text_field :title %>
     <% @ask.errors.full_messages_for(:title).each do |message| %>
       <div><%= message %></div>
@@ -10,8 +10,12 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Ask" %>
   </div>
+<% end %>
+
+<% if @answer.present? %>
+  <p><%= @answer %></p>
 <% end %>
 
 <%= link_to "index", root_path %>
