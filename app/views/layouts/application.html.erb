@@ -3,13 +3,15 @@
   <head>
     <title>H2P</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body>
+  <body class="flex flex-col items-center gap-3 m-40 text-center font-mono bg-cover bg-fixed text-white" style="background-image: url('/assets/space.jpg');" >
     <%= yield %>
   </body>
 </html>

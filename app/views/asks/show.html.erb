@@ -2,9 +2,9 @@
 <p><%= @ask.body %></p>
 
 <ul>
-  <li><%= link_to "Destroy", ask_path(@ask), data: {
+  <li class="border p-3 my-6 hover:bg-white hover:border-black hover:bg-opacity-70 hover:text-black"><%= link_to "Destroy", ask_path(@ask), data: {
     turbo_method: :delete,
     turbo_confirm: "Are you sure?"
   } %></li>
 </ul>
-<%= link_to "index", root_path %>
+<%= link_to "find more feelings", root_path %>

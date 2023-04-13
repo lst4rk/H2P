@@ -1,7 +1,7 @@
 
 class AsksController < ApplicationController
   def index
-    @asks = Ask.all
+    @asks = Ask.all.order('created_at DESC')
     @answer = params[:answer]
   end
 

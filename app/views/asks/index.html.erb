@@ -1,15 +1,30 @@
-<h1>Find Feelings</h1>
+<h1 class="text-5xl uppercase py-6">
+  <%= link_to "Find Feelings", root_path %>
+</h1>
 
-<ul>
+<%= link_to "New Ask", new_ask_path, :class => 'text-3xl uppercase p-4 border grow-0 max-w-fit hover:bg-white hover:border-black hover:bg-opacity-70 hover:text-black' %>
+
+<% if @answer.present? %>
+  <p class="py-6 italic"><%= @answer %></p>
+<% end %>
+
+<ul class="grid grid-cols-3 gap-3 py-6">
   <% @asks.each do |ask| %>
-    <li>
-      <%= link_to ask.title, ask %>
+    <li class="border p-6 backdrop-blur-sm bg-white bg-opacity-20 flex flex-col justify-between">
+      <div class="text-left pb-5">
+        <%= link_to ask.title, ask %>
+      </div>
+      <div class="text-right pt-5">
+        <%= ask.body %>
+      </div>
+      <ul class="flex justify-end">
+        <li class="border text-right my-4 p-2 text-xs max-w-min hover:bg-white hover:border-black hover:bg-opacity-70 hover:text-black">
+          <%= link_to "destroy", ask_path(ask), data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } %></li>
+      </ul>
+
     </li>
   <% end %>
 </ul>
-
-<%= link_to "New Ask", new_ask_path %>
-
-<% if @answer.present? %>
-  <p><%= @answer %></p>
-<% end %>

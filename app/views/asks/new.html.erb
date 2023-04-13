@@ -3,7 +3,7 @@
 <%= form_with model: @ask, url: asks_path, method: :post do |form| %>
   <div>
     <%= form.label :title, "What's on your mind?" %><br>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, :class=>'text-black' %>
     <% @ask.errors.full_messages_for(:title).each do |message| %>
       <div><%= message %></div>
     <% end %>
@@ -15,7 +15,7 @@
 <% end %>
 
 <% if @answer.present? %>
-  <p><%= @answer %></p>
+  <p class="py-6"><%= @answer %></p>
 <% end %>
 
 <%= link_to "index", root_path %>
