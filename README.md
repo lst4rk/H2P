@@ -8,8 +8,9 @@ A Ruby on Rails application that promotes introspection and creativity through t
 * Ruby version used: 3.1.2
 
 ## Getting Started
-- `brew install ruby-build, rbenv`
+- `brew install ruby-build rbenv`
 - Clone this repository
+- `rbenv init`
 - Configure your shell to load rbenv
   - Zsh: `echo 'eval "$(~/.rbenv/bin/rbenv init - zsh)"' >> ~/.zshrc`
   - bash: `echo 'eval "$(rbenv init - bash)"' >> ~/.bash_profile`
@@ -22,6 +23,10 @@ A Ruby on Rails application that promotes introspection and creativity through t
     #set the default Ruby version for this directory
     rbenv local 3.1.2
     ```
+- Install Rails
+  ```
+  gem install rails
+  ```
 - Install gems with
   ```
   bundle install
