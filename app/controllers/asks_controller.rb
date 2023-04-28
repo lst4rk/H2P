@@ -29,7 +29,7 @@ class AsksController < ApplicationController
   def destroy
     @ask = Ask.find(params[:id])
     @ask.destroy
-    head :no_content, status: ok
+    head :no_content, status: :ok
     # redirect_to root_path, status: :see_other
   end
 
