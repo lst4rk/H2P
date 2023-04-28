@@ -2,7 +2,8 @@
 class AsksController < ApplicationController
   def index
     @asks = Ask.all.order('created_at DESC')
-    @answer = params[:answer]
+    render json: @asks
+    # @answer = params[:answer]
   end
 
   def new
@@ -16,24 +17,25 @@ class AsksController < ApplicationController
     @answer = ChatCallerSvc.call(params[:title])
     @ask = Ask.new(title: ask_params[:title], body: "\"#{@answer}")
 
-    if @ask.save
-      redirect_to root_path(answer: @ask.body)
-    else
-      render :new, status: :unprocessable_entity
-    end
+    render json: @ask
+    # if @ask.save
+    #   redirect_to root_path(answer: @ask.body)
+    # else
+    #   render :new, status: :unprocessable_entity
+    # end
 
   end
 
   def destroy
     @ask = Ask.find(params[:id])
     @ask.destroy
-
-    redirect_to root_path, status: :see_other
+    head :no_content, status: ok
+    # redirect_to root_path, status: :see_other
   end
 
   private
-  def ask_params
-    params.require(:ask).permit(:title)
-  end
+    def ask_params
+      params.require(:ask).permit(:title)
+    end
 
 end

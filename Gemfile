@@ -77,3 +77,4 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection', "~> 1.0" # at least 1.0 to fix another bug w redirect failed
 
 gem 'httparty'
+gem 'rack-cors', :require => 'rack/cors'

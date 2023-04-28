@@ -1,0 +1,8 @@
+{
+  "short_name": "H2PC",
+  "name": "H2P Client",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
