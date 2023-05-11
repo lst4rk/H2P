@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import axios from "axios";
-import Cookies from 'js-cookie';
 import {useNavigate} from "react-router-dom";
 
 function New() {
@@ -8,15 +7,9 @@ function New() {
     const navigate = useNavigate();
     function handleSubmit(e) {
         e.preventDefault();
-        const csrfToken = Cookies.get("_h2p_session")
         axios
             .post("/api/version1/asks", {
-                title: title
-            }, {
-                headers: {
-                    'X-CSRF-Token': csrfToken,
-                },
-            })
+                title: title})
             .then((res) => {
                 console.log(res);
                 navigate('/');
