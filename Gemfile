@@ -78,3 +78,6 @@ gem 'omniauth-rails_csrf_protection', "~> 1.0" # at least 1.0 to fix another bug
 
 gem 'httparty'
 gem 'rack-cors', :require => 'rack/cors'
+
+gem 'debase'
+gem 'ruby-debug-ide'

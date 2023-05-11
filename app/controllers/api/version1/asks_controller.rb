@@ -1,28 +1,28 @@
-
-class AsksController < ApplicationController
+class Api::Version1::AsksController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def index
     @asks = Ask.all.order('created_at DESC')
     render json: @asks
-    # @answer = params[:answer]
   end
 
   def new
     @ask = Ask.new
   end
+
   def show
     @ask = Ask.find(params[:id])
+    render json: @ask
   end
 
   def create
     @answer = ChatCallerSvc.call(params[:title])
     @ask = Ask.new(title: ask_params[:title], body: "#{@answer}")
 
-    render json: @ask
-    # if @ask.save
-    #   redirect_to root_path(answer: @ask.body)
-    # else
-    #   render :new, status: :unprocessable_entity
-    # end
+    if @ask.save
+      render json: @ask
+    else
+      render json: @event.errors, status: :unprocessable_entity
+    end
 
   end
 
@@ -34,8 +34,9 @@ class AsksController < ApplicationController
   end
 
   private
-    def ask_params
-      params.require(:ask).permit(:title)
-    end
+
+  def ask_params
+    params.require(:ask).permit(:title)
+  end
 
 end
